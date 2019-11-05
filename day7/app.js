@@ -1,22 +1,25 @@
-let express = require("express")
-let app = express();
-let bodyParser = require("body-parser")
-
-let userRoute = require('./route/userRoute')
-let cat = require('./route/cat')
-let dog = require('./route/dog')
-
-app.use(express.static('./public/'))
-app.use('/user',userRoute)
-app.use('/cat',cat)
-app.use('/dog',dog)
-app.use(bodyParser.urlencoded({
-
-    extended:true
-
-}))
+var express = require('express')
+var bodyParser = require('body-parser')
+var dataroute = require('./route/dataroute')
+var app = express()
+const axios = require('axios');
 
 
+app.use(express.static('public'))
+app.use(bodyParser.json())
 
+app.use('data', dataroute)
+
+axios.get('https://reqres.in/api/users')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .finally(function () {
+   
+  });
 
 app.listen(3000)
+
