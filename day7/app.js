@@ -1,22 +1,12 @@
-let express = require("express")
-let app = express();
-let bodyParser = require("body-parser")
+var express = require('express')
+var bodyParser = require('body-parser')
+var listRoute = require('./listRoute')
 
-let userRoute = require('./route/userRoute')
-let cat = require('./route/cat')
-let dog = require('./route/dog')
-
-app.use(express.static('./public/'))
-app.use('/user',userRoute)
-app.use('/cat',cat)
-app.use('/dog',dog)
+var app = express()
+app.use(express.static('public'))
 app.use(bodyParser.urlencoded({
-
-    extended:true
-
+	extended: true
 }))
-
-
-
+app.use('/list', listRoute)
 
 app.listen(3000)
