@@ -10,15 +10,45 @@ app.use(bodyParser.json())
 
 app.use('data', dataroute)
 
-axios.get('https://reqres.in/api/users')
+// axios.get('https://reqres.in/api/users')
+//   .then(function (response) {
+//     console.log(response);
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   })
+//   .finally(function () {
+   
+//   });
+
+async function getUser() {
+    try {
+      const response = await axios.get('https://reqres.in/api/users');
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+async function work(){
+
+}
+getUser()
+  new Promise (async (resolve) =>{
+      resolve(await work())
+  }).then( () => {
+      console.log('succec')
+  })
+
+
+  axios.post('/user', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  })
   .then(function (response) {
     console.log(response);
   })
   .catch(function (error) {
     console.log(error);
-  })
-  .finally(function () {
-   
   });
 
 app.listen(3000)
