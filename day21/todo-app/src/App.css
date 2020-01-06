@@ -1,0 +1,13 @@
+ul {
+    padding-left: 15px;
+    width: 220px;
+}
+
+li {
+    list-style-type: none;
+    height: 30px;
+}
+
+li > button {
+    float: right;
+}
