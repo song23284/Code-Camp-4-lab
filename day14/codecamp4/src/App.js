@@ -1,13 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
-import Popup from './popup'
+
 function App() {
   return (
-    <div className="App">
-     
-     <p>Lab</p>
-     <Popup heading='headsssd'></Popup>
+    <div className="f">
+       <p> hello world From App.js</p>
     </div>
   );
 }
