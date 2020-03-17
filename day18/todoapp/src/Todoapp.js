@@ -11,8 +11,9 @@ class Todoapp extends React.Component{
 
 handleadd= (e)=>{
    let text = document.getElementById('in1').value
+   if (text == ''){return}
    console.log(text)
-   const {name} = this.state.todos
+   
    this.setState({
     todos : this.state.todos.concat({name:text})
    })
