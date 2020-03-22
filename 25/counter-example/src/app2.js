@@ -10,7 +10,8 @@ class App2 extends React.Component {
     {src: 'https://image.freepik.com/free-photo/cute-pug-with-santa-hat-gift-laying_23-2148348108.jpg'},
     {src: 'https://image.freepik.com/free-photo/white-horses-camargue-france_119101-9.jpg'}
    
-   ]
+   ],tab:0,
+   datatext:[{text:''},{text:'tab1'},{text:'tab2'},{text:'tab3'}]
 
 
 
@@ -30,6 +31,12 @@ class App2 extends React.Component {
     })
     
    }
+   handletab = (e) =>{
+
+console.log(e.target.value)
+
+this.setState({tab:e.target.value})
+   }
 
     render = ()=>{
     return(
@@ -40,7 +47,15 @@ class App2 extends React.Component {
     <div> 
      <img src={this.state.img[this.state.count].src}></img>
    </div>
-
+   <div>
+       <button value={1} onClick={this.handletab}>tab1</button>
+       <button value={2} onClick={this.handletab}>tab2</button>
+       <button value={3} onClick={this.handletab}>tab3</button>
+       <div style={{border:this.state.tab ? 'solid':undefined ,height:'500px',textAlign:"center",marginTop:'10px'}}>
+       {this.state.datatext[this.state.tab].text}
+       </div>
+   </div>
+         
 
         </div>
     )
