@@ -3,6 +3,7 @@ import Catagory from './Catagory';
 import Product from './Product';
 import Cart from './Cart';
 import {Row,Col  } from 'antd';
+import { uniqueId} from "lodash";
 class ShopingCart extends Component {
    state={
      categoeies:[
@@ -157,12 +158,31 @@ class ShopingCart extends Component {
      
     this.setState({selectid:id})
   }
+
+  handleclickaddtocard=(product)=>{
+     if(this.state.cart.find(cartItem=> cartItem.product.id === product.id)){
+       this.setState({
+         cart:this.state.cart.map(cartItem =>
+           cartItem.product.id === product.id ? {...cartItem,amount:cartItem.amount +1} : cartItem 
+           
+         )
+       })
+     }else{
+       this.setState({cart:[...this.state.cart,{uid:uniqueId(),product,amount:1}]
+      })
+     }
+  }
+
+  handledelete= (uid)=>{
+    this.setState({cart:this.state.cart.filter(cartItem => cartItem.uid !== uid)})
+
+  }
   render() {
     return (
       <Row type='flex' justify='space-around' span={24} >
-        <Col span={3}> <Catagory selectid={this.state.selectid}  categoeies={this.state.categoeies} handlemenuclick={this.handlemenuclick} /></Col>
-        <Col span={14}> <Product produces={this.fillterProduct()}/></Col>
-        <Col span={6}> <Cart /></Col>
+        <Col span={3}> <Catagory selectid={this.state.selectid }  categoeies={this.state.categoeies} handlemenuclick={this.handlemenuclick} /></Col>
+        <Col span={14}> <Product handleclickaddtocard={this.handleclickaddtocard} produces={this.fillterProduct()}/></Col>
+        <Col span={6}> <Cart handledelete={this.handledelete} cart={ this.state.cart}    /></Col>
       </Row>
     );
   }
