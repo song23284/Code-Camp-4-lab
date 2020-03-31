@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Table,Button } from 'antd';
+import { Row, Col, Table, Button, Statistic } from 'antd';
 
 
 
@@ -10,62 +10,82 @@ class Cart extends Component {
         const columns = [
             {
                 title: 'Name',
-                dataIndex: 'product.name',
+                dataIndex: 'name',
             },
             {
                 title: 'Price',
-                dataIndex: 'product.price',
+                dataIndex: 'price',
             }
             ,
             {
                 title: 'Amout',
                 dataIndex: 'amount'
-            },{
-                title:'Action',
-                dataIndex:'',
-                render:(text,cartItem)=><Button onClick={()=>this.props.handledelete(cartItem.uid)} type="default">Delete</Button>
-                
+            }, {
+                title: 'Action',
+                dataIndex: '',
+                render: (text, cartItem) => <Button onClick={() => this.props.handledelete(cartItem.uid)} type="default">Delete</Button>
+
             }
 
 
         ];
-        const { cart } = this.props
-              let  array = cart
-        return (
+       
            
-            <div>
-                <Table
 
-                    columns={columns}
-                    dataSource={cart}
-                    bordered
+        const { cart } = this.props
+        let x = cart.map(x => x.product)
+        x.concat(cart)
+        console.log(x)
 
-                />
-               
-                    
-                <table >
-                    <th >
-                        <td >name</td>
-                        <td >price</td>
-                        <td >id</td>
+         
+        let total = 0;
+        
+        for (let item of cart){
+            // total += item.amout * x.price
+        }
 
-                    </th>
-                    {cart.map(x => (
-                  
-                        <tr>
+        return (
 
-                            <td >{x.product.name}</td>
-                            <td >{x.product.price}</td>
-                            <td >{x.uid}</td>
-                            <td >{x.amount}</td>
+            <Row justify='center' type='flex'>
+                <Col>
+                    <Row justify='center' type='flex' >
+                        <Table
+
+                            columns={columns}
+                            dataSource={x}
+                            bordered
+
+                        />
+
+                      <Row span={16}>
+                        <table >
+                            <th >
+                                <td >name</td>
+                                <td >price</td>
+                                <td >id</td>
+
+                            </th>
+                            {cart.map(x => (
+
+                                <tr>
+
+                                    <td >{x.product.name}</td>
+                                    <td >{x.product.price}</td>
+                                    <td >{x.uid}</td>
+                                    <td >{x.amount}</td>
 
 
-                        </tr>
-                    
-                ))}
-                </table>
-                </div>
-            
+                                </tr>
+
+                            ))}
+                        </table>
+                        </Row>
+                        <Statistic title='totl price ' value={total} precision={2} />
+                        <Button style={{ marginTop: 16 }} type="primary">Check out</Button>
+                    </Row>
+                </Col>
+            </Row>
+
         );
     }
 }

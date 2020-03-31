@@ -18,7 +18,7 @@ class Catagory extends Component {
     render() {
         return (
             <Menu
-            selectedKeys={[this.props.selectid.toString()]}
+            selectedKeys={[(this.props.selectid === null ) ? null:this.props.selectid.toString()]}
             onClick={(e)=>this.props.handlemenuclick(e.key)}
             >
                
