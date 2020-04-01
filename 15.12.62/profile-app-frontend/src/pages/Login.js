@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Row, Col, Button, Input } from 'antd';
 
 class Login extends Component {
+    componentDidMount = ()=>{
+        localStorage.setItem('currentMenu','login')
+    }
     render() {
         return (
             <Row style={{  height: '100%' }} type='flex' justify='center' align='middle'>
@@ -12,12 +15,12 @@ class Login extends Component {
             
                     </Row>
                     <Row>Password
-                    <Input placeholder="Password" />
+                    <Input type='Password' placeholder="Password" />
 
                     </Row>
                     <Row type='flex' justify='center'>
-                        <Col><Button type="default">Signup</Button></Col>
-                        <Col><Button type="default">Login</Button></Col>
+                        <Col><Button style={{margin:'5px'}} type="link">Sign Up</Button></Col>
+                        <Col><Button style={{margin:'5px'}} type="primary">Login</Button></Col>
                     </Row>
 
                 </Col>
