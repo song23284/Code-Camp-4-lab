@@ -7,9 +7,9 @@ class Product extends Component {
 
     renderproduct = ()=> (
 
-      this.props.produces.map(x=>(
+      this.props.produces.map(product=>(
           <Col>
-            <Products img={x.image} name={x.name} description={x.description}/>
+            <Products handleclickaddtocard={this.props.handleclickaddtocard} productDetail={product} />
           </Col>
       ))
     )
