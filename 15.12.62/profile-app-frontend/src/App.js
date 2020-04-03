@@ -32,7 +32,6 @@ const { Header, Footer, Sider, Content } = Layout;
      <Route  exact path='/profile' component={Profile}/>
      <Route exact path='/changepassword' component={ChangePassword}/>
     </Content>
-    <Footer style={{height:'5vh'}}>Footer</Footer>
   </Layout>
   );
 }
