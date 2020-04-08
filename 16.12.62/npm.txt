@@ -1,0 +1,2 @@
+npm i express bcryptjs body-parser passport passport-local passport-jwt sequelize-cli cors js
+onwebtoken mysql2 sequelize
