@@ -2,10 +2,12 @@ const passport = require('passport')
 
 
 module.exports = (app,db)=>{
+    console.log('gogojojo')
+
     app.post('/registerUser',(req,res,next)=>{
+
         passport.authenticate('register',(err,user,info)=>{
             if(err){
-                console.log('gogojojo')
               console.error(err);   
             }
               if(info !== undefined){
